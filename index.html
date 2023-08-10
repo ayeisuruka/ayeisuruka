@@ -159,6 +159,28 @@
       </div>
       </div>
     </section>
+    
+    <section>
+      <div class="feedbackForm-bottom">
+          <form id="feedbackForm" action="my.php" method="POST">
+              <label for="fullname">Full Name:</label>
+              <input type="text" id="fullname" name="fullname">
+              
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email">
+              
+              <label for="number">Phone:</label>
+              <input type="tel" id="number" name="number">
+              
+              <label for="msg">Message:</label>
+              <input type="text" id="msg" name="msg">
+              
+              <input type="submit" class="btn btn2" value="Submit">
+          </form>
+      </div>
+  </section>
+  
+
     <section class="container-fluid section-7">
       <div class="row section-7-inner mx-auto text-center">
         <div class="col">
@@ -228,7 +250,45 @@ toggleBtn.addEventListener("click", () => {
       },
       loop: true,
     });
-  
+  //form validation
+
+function validateForm(event) {
+  event.preventDefault();
+
+  var fullname = document.getElementById('fullname').value;
+  var email = document.getElementById('email').value;
+  var number = document.getElementById('number').value;
+
+  if (fullname.trim() === '') {
+    alert('Please enter your name.');
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  if (!isValidPhone(number)) {
+    alert('Please enter a valid phone number.');
+    return;
+  }
+
+
+  alert('Form submitted successfully!');
+  document.getElementById('contactForm').reset();
+}
+
+function isValidEmail(email) {
+  var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return pattern.test(email);
+}
+
+function isValidPhone(number) {
+  var pattern = /^\d{10}$/;
+  return pattern.test(number);
+}
+
 
 	
   </script>
